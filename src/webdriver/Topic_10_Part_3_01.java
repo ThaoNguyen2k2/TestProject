@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.Color;
@@ -19,6 +20,7 @@ public class Topic_10_Part_3_01 {
 	String projectPath = System.getProperty("user.dir");
 	String osName = System.getProperty("os.name");
 	Random rand = new Random();
+	JavascriptExecutor jsExecutor;
 
 	@BeforeClass
 	public void beforeClass() {
@@ -29,6 +31,7 @@ public class Topic_10_Part_3_01 {
 		}
 
 		driver = new ChromeDriver();
+		jsExecutor = (JavascriptExecutor) driver;
 		expliciWait = new WebDriverWait(driver, 30);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		// driver.get("");
@@ -74,7 +77,7 @@ public class Topic_10_Part_3_01 {
 	public void TC_03() {
 		driver.get("https://tiemchungcovid19.gov.vn/portal/register-person");
 
-		// CASE 2
+		// CASE 3
 		// Thẻ khác với input để click (span/div/label...) -> đang hiển thị là được
 		// Thẻ input dùng để verify được
 
@@ -87,12 +90,31 @@ public class Topic_10_Part_3_01 {
 				driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input")).isSelected());
 	}
 
+	@Test
+	public void TC_04() {
+		driver.get("https://tiemchungcovid19.gov.vn/portal/register-person");
+
+		// CASE 4
+		// Thẻ input bị ẩn nhưng vẫn dùng để click
+		// Hàm click() và WebElement nó sẽ không thao tác vào element bị ẩn được
+		// Dùng hàm click() của Javascrip để click(click vào element bị ẩn được)
+		// Dùng JavascripExecutor của Selenium 
+		// Thẻ input dùng để verify được
+
+		// Thao tác chọn
+		driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']//parent::label")).click();
+		sleepInSecond(3);
+		// đây là phần e mới code
+		// Verify chọn thành công
+		Assert.assertTrue(
+				driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input")).isSelected());
+	}
 	
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
 	}
-
+	// đây là 1 phần khác
 	public void sleepInSecond(long second) {
 		try {
 			Thread.sleep(second * 1000);
