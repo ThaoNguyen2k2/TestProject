@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="webdriver.Topic_10_Part_3">
+      <class name="webdriver.Topic_10_Part_3_01">
         <methods>
-          <include name="beforeClass"/>
-          <include name="TC_03_Checkbox_Multiple"/>
           <include name="afterClass"/>
+          <include name="beforeClass"/>
+          <include name="TC_01"/>
         </methods>
-      </class> <!-- webdriver.Topic_10_Part_3 -->
+      </class> <!-- webdriver.Topic_10_Part_3_01 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
