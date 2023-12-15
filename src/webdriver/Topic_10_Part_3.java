@@ -142,7 +142,7 @@ public class Topic_10_Part_3 {
 	public void afterClass() {
 		driver.quit();
 	}
-
+	//file này e cũng code
 	public void sleepInSecond(long second) {
 		try {
 			Thread.sleep(second * 1000);
