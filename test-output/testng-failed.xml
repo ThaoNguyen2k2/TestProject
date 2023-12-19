@@ -7,7 +7,11 @@
         <methods>
           <include name="afterClass"/>
           <include name="beforeClass"/>
+<<<<<<< HEAD
           <include name="TC_03_Drag_and_Drop"/>
+=======
+          <include name="TC_04"/>
+>>>>>>> f4bb85a5af77d8b6a72b7329d1e1bf53e3d349d9
         </methods>
       </class> <!-- webdriver.Topic_14_Part_3 -->
     </classes>

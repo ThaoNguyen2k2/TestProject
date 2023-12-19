@@ -3,6 +3,8 @@ package webdriver;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
+import javax.swing.plaf.basic.BasicBorders.RadioButtonBorder;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -37,7 +39,7 @@ public class Topic_10_Part_3_01 {
 		// driver.get("");
 	}
 
-	//@Test
+	// @Test
 	public void TC_01() {
 		driver.get("https://tiemchungcovid19.gov.vn/portal/register-person");
 
@@ -52,11 +54,12 @@ public class Topic_10_Part_3_01 {
 
 		// Verify chọn thành công
 		Assert.assertTrue(
-				driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input")).isSelected());
+				driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input"))
+						.isSelected());
 
 	}
 
-	//@Test
+	// @Test
 	public void TC_02() {
 		driver.get("https://tiemchungcovid19.gov.vn/portal/register-person");
 
@@ -73,7 +76,7 @@ public class Topic_10_Part_3_01 {
 				driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']//parent::label")).isSelected());
 	}
 
-	@Test
+	//@Test
 	public void TC_03() {
 		driver.get("https://tiemchungcovid19.gov.vn/portal/register-person");
 
@@ -87,7 +90,8 @@ public class Topic_10_Part_3_01 {
 
 		// Verify chọn thành công
 		Assert.assertTrue(
-				driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input")).isSelected());
+				driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input"))
+						.isSelected());
 	}
 
 	@Test
@@ -98,22 +102,24 @@ public class Topic_10_Part_3_01 {
 		// Thẻ input bị ẩn nhưng vẫn dùng để click
 		// Hàm click() và WebElement nó sẽ không thao tác vào element bị ẩn được
 		// Dùng hàm click() của Javascrip để click(click vào element bị ẩn được)
-		// Dùng JavascripExecutor của Selenium 
+		// Dùng JavascripExecutor của Selenium
 		// Thẻ input dùng để verify được
 
+		// Selenium cung cấp 1 thư viện có thể nhúng các đoạn code JS vào kịch bản test
+		// được -> JavaScripExecutor
 		// Thao tác chọn
-		driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']//parent::label")).click();
+		By radioButton = By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input");
+		jsExecutor.executeScript("arguments[0].click();",
+				driver.findElement(radioButton));
 		sleepInSecond(3);
-		// đây là phần e mới code
-		// Verify chọn thành công
-		Assert.assertTrue(
-				driver.findElement(By.xpath("//div[text()='Đăng ký cho người thân']/preceding-sibling::div/input")).isSelected());
+		Assert.assertTrue(driver.findElement(radioButton).isSelected());
 	}
-	
+
 	@AfterClass
 	public void afterClass() {
 		driver.quit();
 	}
+
 	// đây là 1 phần khác
 	public void sleepInSecond(long second) {
 		try {
