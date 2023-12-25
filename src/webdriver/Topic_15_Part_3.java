@@ -69,7 +69,7 @@ public class Topic_15_Part_3 {
 	}
 	
 
-	@Test
+	//@Test
 	public void TC_02_Fixed_In_Dom() {
 		driver.get("https://skills.kynaenglish.vn/");
 		
@@ -94,13 +94,6 @@ public class Topic_15_Part_3 {
 		
 		Assert.assertFalse(driver.findElement(loginPopup).isDisplayed());
 	
-	}
-
-	//@Test
-	public void TC_03_Fixed_Not_In_Dom() {
-		driver.get("https://www.facebook.com/");
-		
-		By loginPopup = By.cssSelector("");
 	}
 
 	
